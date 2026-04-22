@@ -15,15 +15,32 @@ custom_server = create_sdk_mcp_server(name="composio", version="1.0.0", tools=to
 
 async def main():
     options = ClaudeAgentOptions(
-        system_prompt="You are a helpful assistant",
+        system_prompt=(
+            "You are a research assistant. Use WebSearch and WebFetch to find "
+            "information online. Prefer primary sources (for Dreamforce: "
+            "salesforce.com, dreamforce.com, and official Salesforce social "
+            "accounts) over secondary aggregators. When you report a promo or "
+            "discount code, quote it verbatim and include the source URL and "
+            "the date you retrieved it. If you cannot verify a real, currently-"
+            "valid code from a trustworthy source, say so explicitly — never "
+            "invent or guess a code."
+        ),
         permission_mode="bypassPermissions",
+        allowed_tools=["WebSearch", "WebFetch"],
         mcp_servers={
             "composio": custom_server,
         },
     )
 
     async with ClaudeSDKClient(options=options) as client:
-        await client.query("Star the composiohq/composio repo on GitHub")
+        await client.query(
+            "Find a currently-valid promo/discount code for Dreamforce 2026 "
+            "(Salesforce's annual conference in San Francisco). Search the "
+            "official Dreamforce and Salesforce sites first, then reputable "
+            "secondary sources. Return: the code, the discount amount, any "
+            "eligibility restrictions, the source URL, and the expiry date. "
+            "If you cannot verify a real code, report that honestly."
+        )
         async for msg in client.receive_response():
             print(msg)
 
