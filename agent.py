@@ -11,6 +11,7 @@ user_id = "user_8pbwb"
 # Create a tool router session
 session = composio.create(user_id=user_id)
 tools = session.tools()
+print(f"[composio] {len(tools)} tools: {[t.name for t in tools][:10]}")
 custom_server = create_sdk_mcp_server(name="composio", version="1.0.0", tools=tools)
 
 async def main():
@@ -23,7 +24,7 @@ async def main():
     )
 
     async with ClaudeSDKClient(options=options) as client:
-        await client.query("Star the composiohq/composio repo on GitHub")
+        await client.query("Search my Notion workspace for pages about 'quarterly planning' and summarize the top 3.")
         async for msg in client.receive_response():
             print(msg)
 
