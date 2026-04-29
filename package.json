@@ -4,5 +4,12 @@
     "@composio/core": "^0.8.0",
     "@composio/vercel": "^0.8.0",
     "ai": "^6.0.168"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  },
+  "type": "module",
+  "scripts": {
+    "agent": "tsx agent.ts"
   }
 }
