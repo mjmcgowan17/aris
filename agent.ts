@@ -14,7 +14,7 @@ const tools = await session.tools();
 
 const stream = await streamText({
   model: anthropic("claude-sonnet-4-6"),
-  prompt: "Search my Notion workspace for pages about 'quarterly planning' and summarize the top 3.",
+  prompt: "Star the composiohq/composio repo on GitHub",
   stopWhen: stepCountIs(10),
   tools,
 });
