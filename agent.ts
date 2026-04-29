@@ -6,7 +6,7 @@ import { VercelProvider } from "@composio/vercel";
 import { stepCountIs, streamText } from "ai";
 
 const composio = new Composio({ provider: new VercelProvider() });
-const userId = "user_16u5h7";
+const userId = "user_rta2mc";
 
 // Create a tool router session
 const session = await composio.create(userId);
